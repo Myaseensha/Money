@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../models/category_model/category_model.dart';
 import '../basescreen/decoration.dart';
+import 'category_edit.dart';
 
 class ExpenseCategoryList extends StatelessWidget {
   const ExpenseCategoryList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    CategoryDB.instance.refreshUI;
     return ValueListenableBuilder(
       valueListenable: CategoryDB().expenseCategoryList,
       builder: (BuildContext context, List<CategoryModel> newlist, Widget? _) {
@@ -24,7 +26,10 @@ class ExpenseCategoryList extends StatelessWidget {
                       ActionPane(motion: const StretchMotion(), children: [
                     SlidableAction(
                       borderRadius: BorderRadius.circular(5),
-                      onPressed: (context) {},
+                      onPressed: (context) {
+                        editCategoryAddPopup(context,
+                            categoryMode: category, index: index);
+                      },
                       backgroundColor: Colors.green,
                       icon: Icons.edit,
                     ),

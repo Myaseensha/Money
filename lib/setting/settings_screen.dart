@@ -147,17 +147,12 @@ class _ProfileState extends State<Profile> {
                           ));
                   final categoryDB =
                       await Hive.openBox<CategoryModel>('category-database');
-                  print('$categoryDB/////888888');
                   categoryDB.clear();
-                  print('$categoryDB/////88888800000000000');
                   SharedPreferences preferences =
                       await SharedPreferences.getInstance();
                   await preferences.clear();
                   final trans = await Hive.openBox<TransactionModel>('name');
-                  print(
-                      '$trans///////////////////////////////////99999999999999999999999');
                   await trans.clear();
-                  print('$trans///////////////////////////////////');
                 },
                 title: textBigB(text: 'Logout', size: 18),
                 trailing: Padding(

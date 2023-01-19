@@ -1,5 +1,6 @@
 import 'package:app_money/screens/basescreen/decoration.dart';
 import 'package:app_money/screens/category/category_delet.dart';
+import 'package:app_money/screens/category/category_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -11,6 +12,7 @@ class IncomeCategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CategoryDB.instance.refreshUI;
     return ValueListenableBuilder(
       valueListenable: CategoryDB().incomeCategoryList,
       builder: (BuildContext context, List<CategoryModel> newlist, Widget? _) {
@@ -26,7 +28,10 @@ class IncomeCategoryList extends StatelessWidget {
                       ActionPane(motion: const StretchMotion(), children: [
                     SlidableAction(
                       borderRadius: BorderRadius.circular(5),
-                      onPressed: (context) {},
+                      onPressed: (context) {
+                        editCategoryAddPopup(context,
+                            categoryMode: category, index: index);
+                      },
                       backgroundColor: Colors.green,
                       icon: Icons.edit,
                     ),
