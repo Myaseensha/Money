@@ -29,79 +29,88 @@ class _RecentTransactionState extends State<RecentTransaction> {
         widget.result.sort(
           (a, b) => b.amount.compareTo(a.amount),
         );
-        return ListView.separated(
-          padding: const EdgeInsets.all(10),
-          itemCount: widget.result.length,
-          itemBuilder: (BuildContext context, int index) {
-            final value = widget.result[index];
-            return Padding(
-                padding: const EdgeInsets.all(8),
-                child: Slidable(
-                  startActionPane:
-                      ActionPane(motion: const StretchMotion(), children: [
-                    SlidableAction(
-                      borderRadius: BorderRadius.circular(15),
-                      onPressed: (context) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              Update(model: value, index: index),
-                        ));
-                      },
-                      backgroundColor: Colors.green,
-                      icon: Icons.edit,
-                    ),
-                  ]),
-                  endActionPane:
-                      ActionPane(motion: const StretchMotion(), children: [
-                    SlidableAction(
-                      borderRadius: BorderRadius.circular(15),
-                      onPressed: (context) {
-                        transactiondelet(widget.result[index].id, context);
-                      },
-                      backgroundColor: Colors.red,
-                      icon: Icons.delete,
-                    ),
-                  ]),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(value.category.image.toString()),
-                      ),
-                      title: textBig(
-                          text: value.category.name,
-                          size: 18,
-                          color: Colors.black,
-                          weight: FontWeight.w600),
-                      trailing: Text(
-                        'RS ${value.amount}',
-                        style: TextStyle(
-                          color: value.type == CategoryType.income
-                              ? Colors.green
-                              : Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
+        return newvalue.isEmpty
+            ? Center(
+                child:
+                    Image.asset('assets/image/nosearchresultsanimation.json'),
+              )
+            : ListView.separated(
+                padding: const EdgeInsets.all(10),
+                itemCount: widget.result.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final value = widget.result[index];
+                  return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Slidable(
+                        startActionPane: ActionPane(
+                            motion: const StretchMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(15),
+                                onPressed: (context) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        Update(model: value, index: index),
+                                  ));
+                                },
+                                backgroundColor: Colors.green,
+                                icon: Icons.edit,
+                              ),
+                            ]),
+                        endActionPane: ActionPane(
+                            motion: const StretchMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(15),
+                                onPressed: (context) {
+                                  transactiondelet(
+                                      widget.result[index].id, context);
+                                },
+                                backgroundColor: Colors.red,
+                                icon: Icons.delete,
+                              ),
+                            ]),
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          child: ListTile(
+                            leading: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child:
+                                  Image.asset(value.category.image.toString()),
+                            ),
+                            title: textBig(
+                                text: value.category.name,
+                                size: 18,
+                                color: Colors.black,
+                                weight: FontWeight.w600),
+                            trailing: Text(
+                              'RS ${value.amount}',
+                              style: TextStyle(
+                                color: value.type == CategoryType.income
+                                    ? Colors.green
+                                    : Colors.red,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: textBigG(
+                                text: value.description,
+                                align: TextAlign.start,
+                                size: 13),
+                          ),
                         ),
-                      ),
-                      subtitle: textBigG(
-                          text: value.description,
-                          align: TextAlign.start,
-                          size: 13),
-                    ),
-                  ),
-                ));
-          },
-          separatorBuilder: (context, index) {
-            return const SizedBox(
-              height: 0,
-            );
-          },
-        );
+                      ));
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    height: 0,
+                  );
+                },
+              );
       },
     );
   }
