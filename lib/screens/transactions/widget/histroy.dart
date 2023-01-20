@@ -1,6 +1,7 @@
 import 'package:app_money/screens/basescreen/decoration.dart';
 import 'package:app_money/screens/transactions/widget/all_transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import '../../../db/category/category_db.dart';
 import '../../../db/transation/transation_db.dart';
@@ -151,6 +152,8 @@ class _HistroyPageState extends State<HistroyPage>
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 249, 233, 252),
       appBar: AppBar(
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         actions: [
           IconButton(
             onPressed: () =>
@@ -162,6 +165,7 @@ class _HistroyPageState extends State<HistroyPage>
         ],
       ),
       body: SafeArea(
+        top: false,
         child: Column(
           children: [
             Row(

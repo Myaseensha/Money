@@ -51,6 +51,7 @@ dependencies:
   font_awesome_flutter:
   url_launcher: ^6.1.5
   lottie: ^2.1.0
+
   
 
 dev_dependencies:
