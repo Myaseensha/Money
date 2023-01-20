@@ -1,5 +1,6 @@
 import 'package:app_money/setting/terms.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/category_model/category_model.dart';
@@ -37,6 +38,8 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         elevation: 0.0,
       ),
       backgroundColor: const Color.fromARGB(255, 249, 233, 252),
