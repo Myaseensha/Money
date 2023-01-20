@@ -5,6 +5,7 @@ import 'package:app_money/screens/transactions/transction_delet.dart';
 import 'package:app_money/screens/transactions/update_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:lottie/lottie.dart';
 import '../../../db/transation/transation_db.dart';
 import '../../../home/screen_home.dart';
 
@@ -31,8 +32,7 @@ class _RecentTransactionState extends State<RecentTransaction> {
         );
         return newvalue.isEmpty
             ? Center(
-                child:
-                    Image.asset('assets/image/nosearchresultsanimation.json'),
+                child: Lottie.asset('assets/image/nodata.json'),
               )
             : ListView.separated(
                 padding: const EdgeInsets.all(10),

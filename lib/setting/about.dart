@@ -78,7 +78,7 @@ class _MyStatsState extends State<MyAbout> {
                       IconButton(
                           onPressed: () async {
                             launchUr(Uri.parse(
-                                'https://www.instagram.com/invites/contact/?i=awcxhealcuh6&utm_content=3v53ond'));
+                                'https://instagram.com/_yaseensha?igshid=NTA5ZTk1NTc='));
                           },
                           icon: const Icon(FontAwesomeIcons.instagram)),
                       IconButton(

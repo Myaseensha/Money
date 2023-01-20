@@ -3,6 +3,7 @@ import 'package:app_money/screens/transactions/widget/all_transaction.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../models/category_model/category_model.dart';
 import '../../models/transaction_model/transaction_model.dart';
@@ -41,17 +42,22 @@ class MainSerchDelegate extends SearchDelegate {
           valueListenable: transactionlist,
           builder: (BuildContext ctx, List<TransactionModel> transactionList,
               Widget? child) {
-            return ListView.separated(
-              itemCount: transactionList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return RecentTransaction(result: transactionList);
-              },
-              separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 0,
-                );
-              },
-            );
+            return transactionList.isEmpty
+                ? Center(
+                    child: Lottie.asset(
+                        'assets/image/nosearchresultsanimation.json'),
+                  )
+                : ListView.separated(
+                    itemCount: transactionList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return RecentTransaction(result: transactionList);
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 0,
+                      );
+                    },
+                  );
           }),
     );
   }
@@ -66,14 +72,15 @@ class MainSerchDelegate extends SearchDelegate {
               Widget? child) {
             return transactionList.isEmpty
                 ? Center(
-                    child: Image.asset(
+                    child: Lottie.asset(
                         'assets/image/nosearchresultsanimation.json'),
                   )
                 : ListView.separated(
                     itemCount: transactionList.length,
                     itemBuilder: (BuildContext context, int index) {
                       final value = transactionList[index];
-                      if (value.category.name.contains(query.trim())) {
+                      if (value.category.name.contains(query.trim()) ||
+                          value.description.contains(query.trim())) {
                         return Padding(
                             padding: const EdgeInsets.all(5),
                             child: Slidable(
