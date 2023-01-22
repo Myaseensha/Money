@@ -154,6 +154,7 @@ class _HistroyPageState extends State<HistroyPage>
       appBar: AppBar(
         systemOverlayStyle:
             const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        backgroundColor: Colors.purple,
         actions: [
           IconButton(
             onPressed: () =>
