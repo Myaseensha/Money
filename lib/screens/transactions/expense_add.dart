@@ -41,7 +41,7 @@ class _ExpenssScreen extends State<ExpenssScreen> {
                       title: Container(
                         alignment: Alignment.center,
                         child: textBig(
-                          text: 'Expens',
+                          text: 'Expense',
                           size: 20,
                           weight: FontWeight.w600,
                         ),

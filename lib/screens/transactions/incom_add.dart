@@ -41,7 +41,7 @@ class _IncomScreen extends State<IncomScreen> {
                       title: Container(
                         alignment: Alignment.center,
                         child: textBig(
-                          text: 'Incom',
+                          text: 'Income',
                           size: 25,
                           weight: FontWeight.w600,
                         ),

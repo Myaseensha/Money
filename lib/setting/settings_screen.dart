@@ -140,6 +140,17 @@ class _ProfileState extends State<Profile> {
                                       return const SplashScreen();
                                     },
                                   ), (route) => false);
+                                  final categoryDB =
+                                      await Hive.openBox<CategoryModel>(
+                                          'category-database');
+                                  categoryDB.clear();
+                                  SharedPreferences preferences =
+                                      await SharedPreferences.getInstance();
+                                  await preferences.clear();
+                                  final trans =
+                                      await Hive.openBox<TransactionModel>(
+                                          'name');
+                                  await trans.clear();
                                 },
                                 child: const Text(
                                   'Yes',
@@ -148,14 +159,6 @@ class _ProfileState extends State<Profile> {
                               )
                             ],
                           ));
-                  final categoryDB =
-                      await Hive.openBox<CategoryModel>('category-database');
-                  categoryDB.clear();
-                  SharedPreferences preferences =
-                      await SharedPreferences.getInstance();
-                  await preferences.clear();
-                  final trans = await Hive.openBox<TransactionModel>('name');
-                  await trans.clear();
                 },
                 title: textBigB(text: 'Logout', size: 18),
                 trailing: Padding(
