@@ -1,11 +1,9 @@
 import 'package:app_money/provider/provider_transaction.dart';
-import 'package:app_money/view/home/screen_home.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/category_model/category_model.dart';
-import '../../../models/transaction_model/transaction_model.dart';
 import '../basescreen/decoration.dart';
 import 'expense_add.dart';
 import 'incom_add.dart';

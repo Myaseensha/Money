@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../../../models/transaction_model/transaction_model.dart';
 import '../../basescreen/decoration.dart';
 import '../../../home/widgets/search.dart';
 import 'all_transaction.dart';
@@ -35,32 +34,6 @@ class _HistroyPageState extends State<HistroyPage>
 
   List items = ['All', 'today', 'yesterday', 'week', 'custom'];
   DateTime selectedmonth = DateTime.now();
-  void _selectDate(context) async {
-    final DateTime? picked = await showDatePicker(
-        builder: (context, child) {
-          return Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme: const ColorScheme.light(
-                primary: Color.fromARGB(
-                    212, 158, 13, 231), // header background color
-                onPrimary: Colors.white, // header text color
-                onSurface: Color.fromARGB(212, 158, 13, 231), // body text color
-              ),
-            ),
-            child: child!,
-          );
-        },
-        context: context,
-        initialDate: selectedmonth,
-        firstDate: DateTime(2021),
-        lastDate: DateTime(2030));
-
-    if (picked != null && picked != selectedmonth) {
-      setState(() {
-        selectedmonth = picked;
-      });
-    }
-  }
 
   String parseDate(DateTime date) {
     return DateFormat.MMMd().format(date);
@@ -115,7 +88,7 @@ class _HistroyPageState extends State<HistroyPage>
                         Provider.of<ProviderTransaction>(context, listen: false)
                             .menu(
                                 dropDownVale: newValue,
-                                tabController: _tabController);
+                                tabController: _tabController.index);
                       }),
                 ),
                 Container(

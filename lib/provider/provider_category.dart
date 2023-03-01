@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import '../models/category_model/category_model.dart';
 import '../view/screens/basescreen/defulte_category.dart';
 
+// ignore: constant_identifier_names
 const CATEGORY_DB_NAME = 'category-database';
 
 class Providerinstence with ChangeNotifier {

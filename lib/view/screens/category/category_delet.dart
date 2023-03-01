@@ -45,7 +45,7 @@ void categorydelete(value, context) {
                 Provider.of<Providerinstence>(context, listen: false)
                     .deleteCategory(value.id.toString());
                 Navigator.of(context).pop(MaterialPageRoute(
-                    builder: (BuildContext context) => ScreenHome()));
+                    builder: (BuildContext context) => const ScreenHome()));
                 final snackBar = SnackBar(
                   elevation: 0,
                   behavior: SnackBarBehavior.floating,

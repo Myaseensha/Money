@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import '../models/category_model/category_model.dart';
 import '../models/transaction_model/transaction_model.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 // ignore: constant_identifier_names
@@ -108,15 +109,15 @@ class ProviderTransaction with ChangeNotifier {
     }
 
     if (dropDownVale == 'All') {
-      results = (tabController.index == 0
+      results = (tabController == 0
           ? transactionlist.toList()
-          : tabController.index == 1
+          : tabController == 1
               ? incometransationNotifier.toList()
               : expensetransationNotifier.toList());
     } else if (dropDownVale == 'today') {
-      results = (tabController.index == 0
+      results = (tabController == 0
               ? transactionlist.toList()
-              : tabController.index == 1
+              : tabController == 1
                   ? incometransationNotifier.toList()
                   : expensetransationNotifier.toList())
           .where((element) => parseDate(element.calender)
@@ -126,9 +127,9 @@ class ProviderTransaction with ChangeNotifier {
     } else if (dropDownVale == 'yesterday') {
       DateTime start = DateTime(now.year, now.month, now.day - 1);
       DateTime end = start.add(const Duration(days: 1));
-      results = (tabController.index == 0
+      results = (tabController == 0
               ? transactionlist
-              : tabController.index == 1
+              : tabController == 1
                   ? incometransationNotifier
                   : expensetransationNotifier)
           .where((element) =>
@@ -138,9 +139,9 @@ class ProviderTransaction with ChangeNotifier {
     } else if (dropDownVale == 'week') {
       DateTime start = DateTime(now.year, now.month, now.day - 6);
       DateTime end = DateTime(start.year, start.month, start.day + 7);
-      results = (tabController.index == 0
+      results = (tabController == 0
               ? transactionlist
-              : tabController.index == 1
+              : tabController == 1
                   ? incometransationNotifier
                   : expensetransationNotifier)
           .where((element) =>
@@ -150,9 +151,9 @@ class ProviderTransaction with ChangeNotifier {
     } else {
       DateTime start = DateTime(selectedmonth.year, selectedmonth.month, 1);
       DateTime end = DateTime(start.year, start.month + 1, start.day);
-      results = (tabController.index == 0
+      results = (tabController == 0
               ? transactionlist
-              : tabController.index == 1
+              : tabController == 1
                   ? incometransationNotifier
                   : expensetransationNotifier)
           .where((element) =>
@@ -160,6 +161,7 @@ class ProviderTransaction with ChangeNotifier {
               element.calender.isBefore(end))
           .toList();
     }
+    log("$tabController");
     notifyListeners();
     log("$results///////////////////////////////////////////////////");
   }
